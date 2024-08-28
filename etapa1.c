@@ -1,9 +1,17 @@
 // IAN RIBEIRO DE OLIVEIRA
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <time.h>
 #include "labirinto.h"
+
+bool verificarArquivo(FILE *f, char* arquivo){
+  if (!f){
+    fprintf(stderr, "Erro ao abrir o arquivo %s.txt!\n", arquivo);
+    return false;
+  }
+  
+  return true;
+}
 
 char criarCelula(int p){
   int x = rand() % 100 + 1;
@@ -18,8 +26,7 @@ void gerarLabirinto(int n, int p){
   FILE *labirinto;
   labirinto = fopen("./labirinto.txt", "w");
 
-  if (!verificarArquivo(labirinto, "labirinto"))
-    return;
+  if (!verificarArquivo(labirinto, "labirinto")) return;
 
   // Gerar labirinto
   for (int i = 0; i < n; i++){

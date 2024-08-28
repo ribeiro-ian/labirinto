@@ -1,6 +1,5 @@
 // IAN RIBEIRO DE OLIVEIRA
 
-#include <stdio.h>
 #include "./includes/filae.h"
 #include "labirinto.h"
 
@@ -9,11 +8,10 @@ void anotar(){
   fila_inicializar(&lin);
   fila_inicializar(&col);
 
-
-  if (labirinto[1][1] == 0){
+  if (lab->dadosInteiros[1][1] == 0){
     fila_inserir(&lin, 1);
     fila_inserir(&col, 1);
-    labirinto[1][1] = 1;
+    lab->dadosInteiros[1][1] = 1;
   }
 
   while (!fila_vazia(&lin)){
@@ -24,16 +22,16 @@ void anotar(){
     int posY[] = {y+1, y-1};
 
     for (int i = 0; i < 2; i++){
-      if (posX[i] >= 0 && posX[i] < tamanho && labirinto[posX[i]][y] == 0){
-        labirinto[posX[i]][y] = labirinto[x][y] + 1;
+      if (posX[i] >= 0 && posX[i] < lab->tamanho && lab->dadosInteiros[posX[i]][y] == 0){
+        lab->dadosInteiros[posX[i]][y] = lab->dadosInteiros[x][y] + 1;
         fila_inserir(&lin, posX[i]);
         fila_inserir(&col, y);
       }
     }
 
     for (int i = 0; i < 2; i++){
-      if (posY[i] >= 0 && posY[i] < tamanho && labirinto[x][posY[i]] == 0){
-        labirinto[x][posY[i]] = labirinto[x][y] + 1;
+      if (posY[i] >= 0 && posY[i] < lab->tamanho && lab->dadosInteiros[x][posY[i]] == 0){
+        lab->dadosInteiros[x][posY[i]] = lab->dadosInteiros[x][y] + 1;
         fila_inserir(&lin, x);
         fila_inserir(&col, posY[i]);
       }
@@ -47,17 +45,17 @@ void anotar(){
   fila_liberar(&col);
 }
 
-void apresentarFiguras(){
+void apresentarFiguras(labirinto *lab){
   FILE *a, *b, *c;
 
   /* ========== Figura A ========== */
   a = fopen("F2a.txt", "w");
-  if (!verificarArquivo(a, "F2a"))
-    return;
+  
+  if (!verificarArquivo(a, "F2a")) return;
 
-  for (int i = 0; i < tamanho; i++){
-    for (int j = 0; j < tamanho; j++){
-      int num = labirinto[i][j];
+  for (int i = 0; i < lab->tamanho; i++){
+    for (int j = 0; j < lab->tamanho; j++){
+      int num = lab->dados[i][j];
       char c = (num == -1 ? '#' : ' ');
 
       fprintf(stdout, "%3c", c);
@@ -72,13 +70,13 @@ void apresentarFiguras(){
 
   /* ========== Figura B ========== */
   b = fopen("F2b.txt", "w");
-  if (!verificarArquivo(b, "F2b"))
-    return;
   
-  for (int i = 0; i < tamanho; i++){
-    for (int j = 0; j < tamanho; j++){
-      fprintf(stdout, "%3d", labirinto[i][j]);
-      fprintf(b, "%3d", labirinto[i][j]);
+  if (!verificarArquivo(b, "F2b")) return;
+  
+  for (int i = 0; i < lab->tamanho; i++){
+    for (int j = 0; j < lab->tamanho; j++){
+      fprintf(stdout, "%3d", lab->dados[i][j]);
+      fprintf(b, "%3d", lab->dados[i][j]);
     }
     fprintf(stdout, "\n");
     fprintf(b, "\n");
@@ -89,15 +87,15 @@ void apresentarFiguras(){
 
   /* ========== Figura C ========== */
   c = fopen("F2c.txt", "w");
-  if (!verificarArquivo(c, "F2c"))
-    return;
+  
+  if (!verificarArquivo(c, "F2c")) return;
   
   anotar();
   
-  for (int i = 0; i < tamanho; i++){
-    for (int j = 0; j < tamanho; j++){
-      fprintf(stdout, "%4d", labirinto[i][j]);
-      fprintf(c, "%4d", labirinto[i][j]);
+  for (int i = 0; i < lab->tamanho; i++){
+    for (int j = 0; j < lab->tamanho; j++){
+      fprintf(stdout, "%4d", lab->dados[i][j]);
+      fprintf(c, "%4d", lab->dados[i][j]);
     }
     fprintf(stdout, "\n");
     fprintf(c, "\n");

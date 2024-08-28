@@ -1,24 +1,19 @@
 // IAN RIBEIRO DE OLIVEIRA
 
 #include "labirinto.h"
-#include <stdio.h>
 #include "./includes/pilhae.h"
 
-#define VERMELHO "\e[0;31m"
-#define VERDE "\e[0;32m"
-#define RESETAR_COR "\e[0m"
-
 void vermelho(){
-  fprintf(stdout, VERMELHO);
+  fprintf(stdout, "\e[0;31m");
 }
 void verde(){
-  fprintf(stdout, VERDE);
+  fprintf(stdout, "\e[0;32m");
 }
 void resetar_cor(){
-  fprintf(stdout, RESETAR_COR);
+  fprintf(stdout, "\e[0m");
 }
 
-char lab[101][101];
+char lab[MAXN][MAXN];
 
 void extrair(){
   pilha lin, col;

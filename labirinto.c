@@ -3,24 +3,22 @@
 #include <stdio.h>
 #include "labirinto.h"
 
-int verificarArquivo(FILE *f, char* arquivo){
-  if (!f){
-    fprintf(stderr, "Erro ao abrir o arquivo %s.txt!\n", arquivo);
-    return 0;
-  }
-  
-  return 1;
-}
-
 int main(){
   int n, p;
+  labirinto l;
 
-  fscanf(stdin, "%i %i", &n, &p);
+  fprintf(stdout, "Insira o tamanho N do labirinto: \n");
+  fscanf(stdin, "%i", &n);
 
-  // gerarLabirinto(n, p);
-  processarLabirinto();
-  apresentarFiguras();
-  menorCaminho();
+  fprintf(stdout, "Insira a probabilidade P de uma celula ser parede: \n");
+  fscanf(stdin, "%i", &p);
+
+  gerarLabirinto(n, p);
+
+  processarLabirinto(&l);
+
+  // apresentarFiguras();
+  // menorCaminho();
 
   return 0;
 }
