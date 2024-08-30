@@ -1,11 +1,11 @@
-// IAN RIBEIRO DE OLIVEIRA
+/* Ian Ribeiro de Oliveira */
 
 #include <stdio.h>
 #include "labirinto.h"
 
 int main(){
-  int n, p;
   labirinto l;
+  int n, p;
 
   fprintf(stdout, "Insira o tamanho N (um inteiro de 7 a 100) do labirinto: \n");
   fscanf(stdin, "%i", &n);

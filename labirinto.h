@@ -1,4 +1,4 @@
-// IAN RIBEIRO DE OLIVEIRA
+/* Ian Ribeiro de Oliveira */
 
 #ifndef LABIRINTO
 #define LABIRINTO

@@ -1,4 +1,4 @@
-// IAN RIBEIRO DE OLIVEIRA
+/* Ian Ribeiro de Oliveira */
 
 #include "labirinto.h"
 

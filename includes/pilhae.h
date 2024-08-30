@@ -1,4 +1,4 @@
-// IAN RIBEIRO DE OLIVEIRA
+/* Ian Ribeiro de Oliveira */
 
 #ifndef PILHA_H // Include guard
 #define PILHA_H
