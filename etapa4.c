@@ -16,7 +16,8 @@ void resetar_cor(){
 void extrair(labirinto *lab, const int TAM, char labChar[TAM][TAM]){
   pilha *lin = pilha_criar(), *col = pilha_criar();
 
-  pilha_inserir(lin, TAM-2); pilha_inserir(col, TAM-2);
+  pilha_inserir(lin, TAM-2);
+  pilha_inserir(col, TAM-2);
     
   while (1){
     int x, y; 
@@ -56,6 +57,10 @@ void procurarMenorCaminho(labirinto *lab){
     return;
   }
 
+  FILE *f;
+  f = fopen("F3b.txt", "w");
+  verificarArquivo(f, "F3b");
+
   char labirintoChar[TAM][TAM];
   // Preencher celulas do labirinto de caracteres
   for (int i = 0; i < TAM; i++)
@@ -64,10 +69,6 @@ void procurarMenorCaminho(labirinto *lab){
         labirintoChar[i][j] = '#';
       else
         labirintoChar[i][j] = ' ';
-
-  FILE *f;
-  f = fopen("F3b.txt", "w");
-  verificarArquivo(f, "F3b");
 
   extrair(lab, TAM, labirintoChar);
 

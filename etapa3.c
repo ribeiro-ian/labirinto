@@ -17,7 +17,7 @@ void anotar(labirinto *lab){
     int x = fila_frente(linha);
     int y = fila_frente(coluna);
 
-    int posX[] = {x+1, x-1};
+    int posX[] = {x+1, x-1}; 
     int posY[] = {y+1, y-1};
 
     for (int i = 0; i < 2; i++){
@@ -54,7 +54,6 @@ void anotarLabirinto(labirinto *lab){
 
   /* ========== Figura A ========== */
   a = fopen("F2a.txt", "w");
-  
   verificarArquivo(a, "F2a");
 
   for (int i = 0; i < TAM; i++){
@@ -74,7 +73,6 @@ void anotarLabirinto(labirinto *lab){
 
   /* ========== Figura B ========== */
   b = fopen("F2b.txt", "w");
-  
   verificarArquivo(b, "F2b");
   
   for (int i = 0; i < TAM; i++){
@@ -91,7 +89,6 @@ void anotarLabirinto(labirinto *lab){
 
   /* ========== Figura C ========== */
   c = fopen("F2c.txt", "w");
-  
   verificarArquivo(c, "F2c");
 
   anotar(lab);
@@ -107,5 +104,4 @@ void anotarLabirinto(labirinto *lab){
   fprintf(stdout, "\n");
 
   fclose(c);
-
 }

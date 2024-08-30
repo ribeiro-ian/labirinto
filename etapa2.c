@@ -6,7 +6,6 @@ void processarLabirinto(labirinto *lab){
 
   FILE *f;
   f = fopen("./labirinto.txt", "r");
-  
   verificarArquivo(f, "labirinto");
 
   // Ler Labirinto
