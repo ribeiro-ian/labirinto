@@ -3,59 +3,63 @@
 #include "./includes/filae.h"
 #include "labirinto.h"
 
-void anotar(){
-  fila lin, col;
-  fila_inicializar(&lin);
-  fila_inicializar(&col);
+void anotar(labirinto *lab){
+  fila *linha = fila_criar(), *coluna = fila_criar();
+  const int TAM = lab->tamanho;
 
-  if (lab->dadosInteiros[1][1] == 0){
-    fila_inserir(&lin, 1);
-    fila_inserir(&col, 1);
-    lab->dadosInteiros[1][1] = 1;
+  if (lab->matriz[1][1] == 0){
+    fila_inserir(linha, 1);
+    fila_inserir(coluna, 1);
+    lab->matriz[1][1] = 1;
   }
 
-  while (!fila_vazia(&lin)){
-    int x = fila_frente(&lin);
-    int y = fila_frente(&col);
+  while (!fila_vazia(linha) && !fila_vazia(coluna)){
+    int x = fila_frente(linha);
+    int y = fila_frente(coluna);
 
     int posX[] = {x+1, x-1};
     int posY[] = {y+1, y-1};
 
     for (int i = 0; i < 2; i++){
-      if (posX[i] >= 0 && posX[i] < lab->tamanho && lab->dadosInteiros[posX[i]][y] == 0){
-        lab->dadosInteiros[posX[i]][y] = lab->dadosInteiros[x][y] + 1;
-        fila_inserir(&lin, posX[i]);
-        fila_inserir(&col, y);
+      int lin = posX[i];
+
+      if (lin >= 0 && lin < TAM && lab->matriz[lin][y] == 0){
+        lab->matriz[lin][y] = lab->matriz[x][y] + 1;
+        fila_inserir(linha, lin);
+        fila_inserir(coluna, y);
       }
     }
 
     for (int i = 0; i < 2; i++){
-      if (posY[i] >= 0 && posY[i] < lab->tamanho && lab->dadosInteiros[x][posY[i]] == 0){
-        lab->dadosInteiros[x][posY[i]] = lab->dadosInteiros[x][y] + 1;
-        fila_inserir(&lin, x);
-        fila_inserir(&col, posY[i]);
+      int col = posY[i];
+
+      if (col >= 0 && col < TAM && lab->matriz[x][col] == 0){
+        lab->matriz[x][col] = lab->matriz[x][y] + 1;
+        fila_inserir(linha, x);
+        fila_inserir(coluna, col);
       }
     }
 
-    fila_remover(&lin);
-    fila_remover(&col);
+    fila_remover(linha);
+    fila_remover(coluna);
   }
   
-  fila_liberar(&lin);
-  fila_liberar(&col);
+  fila_liberar(&linha);
+  fila_liberar(&coluna);
 }
 
-void apresentarFiguras(labirinto *lab){
+void anotarLabirinto(labirinto *lab){
   FILE *a, *b, *c;
+  const int TAM = lab->tamanho;
 
   /* ========== Figura A ========== */
   a = fopen("F2a.txt", "w");
   
   if (!verificarArquivo(a, "F2a")) return;
 
-  for (int i = 0; i < lab->tamanho; i++){
-    for (int j = 0; j < lab->tamanho; j++){
-      int num = lab->dados[i][j];
+  for (int i = 0; i < TAM; i++){
+    for (int j = 0; j < TAM; j++){
+      int num = lab->matriz[i][j];
       char c = (num == -1 ? '#' : ' ');
 
       fprintf(stdout, "%3c", c);
@@ -73,10 +77,10 @@ void apresentarFiguras(labirinto *lab){
   
   if (!verificarArquivo(b, "F2b")) return;
   
-  for (int i = 0; i < lab->tamanho; i++){
-    for (int j = 0; j < lab->tamanho; j++){
-      fprintf(stdout, "%3d", lab->dados[i][j]);
-      fprintf(b, "%3d", lab->dados[i][j]);
+  for (int i = 0; i < TAM; i++){
+    for (int j = 0; j < TAM; j++){
+      fprintf(stdout, "%3d", lab->matriz[i][j]);
+      fprintf(b, "%3d", lab->matriz[i][j]);
     }
     fprintf(stdout, "\n");
     fprintf(b, "\n");
@@ -89,13 +93,13 @@ void apresentarFiguras(labirinto *lab){
   c = fopen("F2c.txt", "w");
   
   if (!verificarArquivo(c, "F2c")) return;
-  
-  anotar();
-  
-  for (int i = 0; i < lab->tamanho; i++){
-    for (int j = 0; j < lab->tamanho; j++){
-      fprintf(stdout, "%4d", lab->dados[i][j]);
-      fprintf(c, "%4d", lab->dados[i][j]);
+
+  anotar(lab);
+
+  for (int i = 0; i < TAM; i++){
+    for (int j = 0; j < TAM; j++){
+      fprintf(stdout, "%4d", lab->matriz[i][j]);
+      fprintf(c, "%4d", lab->matriz[i][j]);
     }
     fprintf(stdout, "\n");
     fprintf(c, "\n");
@@ -103,4 +107,5 @@ void apresentarFiguras(labirinto *lab){
   fprintf(stdout, "\n");
 
   fclose(c);
+
 }

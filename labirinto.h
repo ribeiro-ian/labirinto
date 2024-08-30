@@ -8,8 +8,7 @@
 #define MAXN 101
 
 typedef struct labirinto{
-  int dados[MAXN][MAXN];
-  char dadosChar[MAXN][MAXN];
+  int matriz[MAXN][MAXN];
   int tamanho;
 } labirinto;
 
@@ -33,7 +32,19 @@ Entrada: a estrutura labirinto lab
 Saída: nenhuma
 */ 
 void processarLabirinto(labirinto *lab);
-// void apresentarFiguras();
-// void menorCaminho();
+
+/*
+Anota a distância entre cada célula e a entrada do labirinto
+Entrada: a estrutura labirinto lab
+Saída: nenhuma
+*/ 
+void anotarLabirinto(labirinto *lab);
+
+/*
+Processa o labarinto no arquivo "labirinto.txt"
+Entrada: a estrutura labirinto lab
+Saída: nenhuma
+*/ 
+void menorCaminho(labirinto *lab);
 
 #endif

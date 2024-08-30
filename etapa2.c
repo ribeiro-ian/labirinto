@@ -18,10 +18,10 @@ void processarLabirinto(labirinto *lab){
     
     while (s[x] != '\0'){
       if (s[x] == '#')
-        lab->dados[y][x] = -1;
+        lab->matriz[y][x] = -1;
 
       else
-        lab->dados[y][x] = 0;
+        lab->matriz[y][x] = 0;
 
       x++;
     }

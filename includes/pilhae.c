@@ -4,9 +4,42 @@
 
 /* <============== IMPLEMENTAÇÃO ==============> */
 
-void pilha_inicializar(pilha *p){
-  p->qtd = 0;
+struct celula{
+  cel *prox;
+  item it;
+};
+
+struct pilha{
+  int qtd;
+  cel* prim;
+};
+
+cel* criar_celula_pilha(item it){
+  cel* nova = (cel*) malloc(sizeof(cel));
+
+  if (nova){
+    nova->it = it;
+    nova->prox = NULL;
+  }
+  
+  return nova;
+}
+
+pilha* pilha_criar(){
+  pilha *p = (pilha*) malloc(sizeof(pilha));
+  
+  if (!p) return p;
+
   p->prim = NULL;
+  p->qtd = 0;
+
+  return p;
+}
+
+void pilha_liberar(pilha **p){
+  pilha_esvaziar(*p);
+  free(*p);
+  *p = NULL;
 }
 
 item pilha_topo(pilha *p){
@@ -18,26 +51,17 @@ item pilha_topo(pilha *p){
   return p->prim->it;
 }
 
-void pilha_exibir(pilha *p){
-
-  cel *temp = p->prim;
-
-  while(temp != NULL){
-    printf("%d ", temp->it);
-    temp = temp->prox;
-  }
-  printf("\n");
+int pilha_tamanho(pilha *p){
+  return p->qtd;
 }
 
-cel* criar_celula_pilha(item it){
-  cel* nova = (cel*) malloc(sizeof(cel));
+bool pilha_vazia(pilha *p){
+  return p->qtd == 0;
+}
 
-  if (nova){
-    nova->it = it;
-    nova->prox = NULL;
-  }
-  
-  return nova;
+void pilha_esvaziar(pilha *p){
+  while (!pilha_vazia(p))
+    pilha_remover(p);
 }
 
 bool pilha_inserir(pilha *p, item it){
@@ -65,19 +89,13 @@ bool pilha_remover(pilha *p){
   return true;  
 }
 
-int pilha_tamanho(pilha *p){
-  return p->qtd;
-}
+void pilha_exibir(pilha *p){
 
-bool pilha_vazia(pilha *p){
-  return p->qtd == 0;
-}
+  cel *temp = p->prim;
 
-void pilha_esvaziar(pilha *p){
-  while (!pilha_vazia(p))
-    pilha_remover(p);
-}
-
-void pilha_liberar(pilha *p){
-  pilha_esvaziar(p);
+  while(temp != NULL){
+    printf("%d ", temp->it);
+    temp = temp->prox;
+  }
+  printf("\n");
 }

@@ -8,50 +8,19 @@ typedef int item;
 typedef struct fila fila;
 typedef struct celula cel;
 
-struct celula{
-  cel *prox;
-  item it;
-};
-
-struct fila{ 
-  int qtd;
-  cel *prim;
-};
-
 /*
-Inicializa a fila
+Cria uma fila
 Entrada: referência para a fila f
 Saída: Não tem
 */
-void fila_inicializar(fila *f);
+fila* fila_criar();
 
 /*
 Libera a memória alocada para a fila
-Entrada: referência para a fila f
+Entrada: referência para o ponteiro da fila f
 Saída: Não tem
 */
-void fila_liberar(fila *f);
-
-/*
-Insere um item na fila
-Entrada: referência para a fila f e o item it a ser inserido
-Saída: true se inserido com sucesso; false caso contrário
-*/
-bool fila_inserir(fila* f, item it);
-
-/*
-Remove o item na frente da fila
-Entrada: referência para a fila f
-Saída: true se removido com sucesso; false caso contrário
-*/
-bool fila_remover(fila *f);
-
-/*
-Esvazia uma fila
-Entrada: referência para a fila f
-Saída: Não tem
-*/
-void fila_esvaziar(fila *f);
+void fila_liberar(fila **f);
 
 /*
 Retorna o item da frente da fila
@@ -74,5 +43,33 @@ Entrada: referência para a fila f
 Saída: true se estiver vazia; false caso contrário
 */
 bool fila_vazia(fila *f);
+
+/*
+Esvazia uma fila
+Entrada: referência para a fila f
+Saída: Não tem
+*/
+void fila_esvaziar(fila *f);
+
+/*
+Insere um item na fila
+Entrada: referência para a fila f e o item it a ser inserido
+Saída: true se inserido com sucesso; false caso contrário
+*/
+bool fila_inserir(fila* f, item it);
+
+/*
+Remove o item na frente da fila
+Entrada: referência para a fila f
+Saída: true se removido com sucesso; false caso contrário
+*/
+bool fila_remover(fila *f);
+
+/*
+Exibe o conteúdo da fila
+Entrada: referência para a fila f
+Saída: itens da fila
+*/
+void fila_exibir(fila *f);
 
 #endif
