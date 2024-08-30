@@ -48,7 +48,7 @@ void extrair(labirinto *lab, const int TAM, char labChar[TAM][TAM]){
   pilha_liberar(&col);
 }
 
-void menorCaminho(labirinto *lab){
+void procurarMenorCaminho(labirinto *lab){
   const int TAM = lab->tamanho;
   
   if (lab->matriz[TAM-2][TAM-2] <= 0){
@@ -67,7 +67,7 @@ void menorCaminho(labirinto *lab){
 
   FILE *f;
   f = fopen("F3b.txt", "w");
-  if (!verificarArquivo(f, "F3b")) return;
+  verificarArquivo(f, "F3b");
 
   extrair(lab, TAM, labirintoChar);
 

@@ -16,7 +16,7 @@ int main(){
   gerarLabirinto(n, p);
   processarLabirinto(&l);
   anotarLabirinto(&l);
-  menorCaminho(&l);
+  procurarMenorCaminho(&l);
 
   return 0;
 }

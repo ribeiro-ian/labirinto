@@ -7,8 +7,7 @@ void processarLabirinto(labirinto *lab){
   FILE *f;
   f = fopen("./labirinto.txt", "r");
   
-  if (!verificarArquivo(f, "labirinto")) return;
-  
+  verificarArquivo(f, "labirinto");
 
   // Ler Labirinto
   char s[MAXN];

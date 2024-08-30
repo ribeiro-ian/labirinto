@@ -4,13 +4,11 @@
 #include <time.h>
 #include "labirinto.h"
 
-bool verificarArquivo(FILE *f, char* arquivo){
+void verificarArquivo(FILE *f, char* arquivo){
   if (!f){
     fprintf(stderr, "Erro ao abrir o arquivo %s.txt!\n", arquivo);
-    return false;
+    exit(EXIT_FAILURE);
   }
-  
-  return true;
 }
 
 char criarCelula(int p){
@@ -26,7 +24,7 @@ void gerarLabirinto(int n, int p){
   FILE *labirinto;
   labirinto = fopen("./labirinto.txt", "w");
 
-  if (!verificarArquivo(labirinto, "labirinto")) return;
+  verificarArquivo(labirinto, "labirinto");
 
   // Gerar labirinto
   for (int i = 0; i < n; i++){

@@ -1,7 +1,7 @@
 // IAN RIBEIRO DE OLIVEIRA
 
-#include "./includes/filae.h"
 #include "labirinto.h"
+#include "./includes/filae.h"
 
 void anotar(labirinto *lab){
   fila *linha = fila_criar(), *coluna = fila_criar();
@@ -55,7 +55,7 @@ void anotarLabirinto(labirinto *lab){
   /* ========== Figura A ========== */
   a = fopen("F2a.txt", "w");
   
-  if (!verificarArquivo(a, "F2a")) return;
+  verificarArquivo(a, "F2a");
 
   for (int i = 0; i < TAM; i++){
     for (int j = 0; j < TAM; j++){
@@ -75,7 +75,7 @@ void anotarLabirinto(labirinto *lab){
   /* ========== Figura B ========== */
   b = fopen("F2b.txt", "w");
   
-  if (!verificarArquivo(b, "F2b")) return;
+  verificarArquivo(b, "F2b");
   
   for (int i = 0; i < TAM; i++){
     for (int j = 0; j < TAM; j++){
@@ -92,7 +92,7 @@ void anotarLabirinto(labirinto *lab){
   /* ========== Figura C ========== */
   c = fopen("F2c.txt", "w");
   
-  if (!verificarArquivo(c, "F2c")) return;
+  verificarArquivo(c, "F2c");
 
   anotar(lab);
 

@@ -1,8 +1,9 @@
+// IAN RIBEIRO DE OLIVEIRA
+
 #ifndef PILHA_H // Include guard
 #define PILHA_H
 
 #include <stdbool.h>
-// #include "item.h"
 typedef int item;
 
 /* <============== INTERFACE ==============> */

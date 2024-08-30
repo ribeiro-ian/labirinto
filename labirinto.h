@@ -4,7 +4,6 @@
 #define LABIRINTO
 
 #include <stdio.h>
-#include <stdbool.h>
 #define MAXN 101
 
 typedef struct labirinto{
@@ -15,9 +14,9 @@ typedef struct labirinto{
 /*
 Verifica se foi possível abrir/acessar o arquivo f
 Entrada: referência para o arquivo f e o nome do arquivo
-Saída: retorna falso se não foi possível abrir o arquivo, retorna verdadeiro se o arquivo foi acessado com sucesso
+Saída: fecha o programa caso não seja possível acessar o arquivo f
 */ 
-bool verificarArquivo(FILE *f, char *arquivo);
+void verificarArquivo(FILE *f, char *arquivo);
 
 /*
 Gera um labarinto de tamanho n x n
@@ -45,6 +44,6 @@ Processa o labarinto no arquivo "labirinto.txt"
 Entrada: a estrutura labirinto lab
 Saída: nenhuma
 */ 
-void menorCaminho(labirinto *lab);
+void procurarMenorCaminho(labirinto *lab);
 
 #endif
