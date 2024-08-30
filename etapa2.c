@@ -27,16 +27,5 @@ void processarLabirinto(labirinto *lab){
   }
   lab->tamanho = y;
 
-  /* TESTE
-  fprintf(stderr, "tamanho do labirinto: %i\n", lab->tamanho);
-  for (int i = 0; i < lab->tamanho; i++){
-    for (int j = 0; j < lab->tamanho; j++){
-      fprintf(stderr, "%3d", lab->dadosInteiros[i][j]);
-    }
-    fprintf(stderr, "\n");
-  }
-  fprintf(stderr, "\n");
-  */
-  
   fclose(f);
 }

@@ -76,7 +76,7 @@ void procurarMenorCaminho(labirinto *lab){
     for (int j = 0; j < TAM; j++){
       if ((i == 1 && j == 0) || (i == TAM-2 && j == TAM-1))
         verde();
-      else if (labirintoChar[i][j]=='X')
+      else if (labirintoChar[i][j] == 'X')
         vermelho();
       
       fprintf(stdout, "%3c", labirintoChar[i][j]);
